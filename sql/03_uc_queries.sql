@@ -34,3 +34,24 @@ GROUP BY city;
 SELECT state, COUNT(*) as state_count 
 FROM address_book 
 GROUP BY state;
+USE address_book_service;
+
+-- Retrieve entries sorted alphabetically by Person's name for a given city
+SELECT * FROM address_book 
+WHERE city = 'Mumbai' 
+ORDER BY first_name ASC;
+
+USE address_book_service;
+
+-- Alter Address Book to add address book name and type 
+ALTER TABLE address_book 
+ADD COLUMN ab_name VARCHAR(50) AFTER id,
+ADD COLUMN type VARCHAR(50) AFTER email;
+
+-- View table structure to verify new columns
+DESCRIBE address_book;
+
+-- Ability to get number of contact persons i.e. count by type [cite: 53, 55]
+SELECT type, COUNT(*) as type_count 
+FROM address_book 
+GROUP BY type;
